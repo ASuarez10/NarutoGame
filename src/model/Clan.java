@@ -6,16 +6,31 @@ import java.util.Comparator;
 public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 
 	//Attributes
+	/**
+	 * Clan's name
+	 */
 	private String name;
 	
 	//Relations
+	/**
+	 * Characters in the clan
+	 */
 	private Character characters;
 	
+	/**
+	 * Constructor of Clan's class
+	 * @param name - Clan's name
+	 * @param characters - Characters in the clan
+	 */
 	public Clan(String name, Character characters) {
 		this.name = name;
 		this.characters = characters;
 	}
 
+	/**
+	 * Method to give the attribute name
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
@@ -24,6 +39,10 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 		this.name = name;
 	}
 
+	/**
+	 * Method to give the attribute characters
+	 * @return character's list of the clan
+	 */
 	public Character getCharacters() {
 		return characters;
 	}

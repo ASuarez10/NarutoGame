@@ -51,6 +51,11 @@ public class Main {
 
           switch (a){
               case 1:
+            	  System.out.println("Ingresa el nombre del clan");
+            	  String nC = reader.nextLine();
+            	  
+            	  Clan c = new Clan(nC, null);
+            	  System.out.println(principal.addClan(c)); 
             	 break;
               case 2:
             	 break;

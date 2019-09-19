@@ -6,20 +6,60 @@ import java.util.Comparator;
 public class Character implements Comparable<Character>, Comparator<Character>, Serializable{
 
 	//Attributes
+	
+	/**
+	 * Character's name
+	 */
 	private String name;
+	/**
+	 * Character's last name
+	 */
+	private String lastName;
+	/**
+	 * Character's personality
+	 */
 	private String personality;
+	/**
+	 * Character's creation date
+	 */
 	private String creationDate;
+	/**
+	 * Character's power
+	 */
 	private long power;
 	
 	//Relations
+	
+	/**
+	 * Previous character in the list
+	 */
 	private Character previous;
+	/**
+	 * Next character in the list
+	 */
 	private Character next;
+	/**
+	 * Character's techniques
+	 */
 	private Technique techniques;
 	
 	//Constructor
-	public Character(String name, String personality, String creationDate, long power, Character previous,	
+	
+	/**
+	 * Constructor of Character's class
+	 * @param name - Character's name
+	 * @param lastName - Character's last name
+	 * @param personality - Character's personality
+	 * @param creationDate - Character's creation date
+	 * @param power - Character's power
+	 * @param previous - previous character in the list
+	 * @param next - next character in the list
+	 * @param techniques - Technique's list
+	 */
+	public Character(String name, String lastName, String personality, String creationDate, long power, Character previous,	
 			Character next, Technique techniques) {
 		this.name = name;
+		this.lastName = lastName;
 		this.personality = personality;
 		this.creationDate = creationDate;
 		this.power = power;
@@ -28,6 +68,10 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		this.techniques = techniques;
 	}
 
+	/**
+	 * Method to give the attribute name
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
@@ -35,7 +79,23 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * Method to give the attribute lastName
+	 * @return last name
+	 */
+	public String getLastName() {
+		return lastName;
+	}
 
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * Method to give the attribute personality
+	 * @return personality
+	 */
 	public String getPersonality() {
 		return personality;
 	}
@@ -44,6 +104,10 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		this.personality = personality;
 	}
 
+	/**
+	 * Method to give the attribute creationDate
+	 * @return creation date
+	 */
 	public String getCreationDate() {
 		return creationDate;
 	}
@@ -52,6 +116,10 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		this.creationDate = creationDate;
 	}
 
+	/**
+	 * Method to give the attribute power
+	 * @return power
+	 */
 	public long getPower() {
 		return power;
 	}
@@ -60,6 +128,10 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		this.power = power;
 	}
 
+	/**
+	 * Method to give the previous object
+	 * @return previous character in the list
+	 */
 	public Character getPrevious() {
 		return previous;
 	}
@@ -68,6 +140,10 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		this.previous = previous;
 	}
 
+	/**
+	 * Method to give the next technique
+	 * @return next technique in the list
+	 */
 	public Character getNext() {
 		return next;
 	}
@@ -76,6 +152,10 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		this.next = next;
 	}
 
+	/**
+	 * Method to give character's techniques
+	 * @return character's techniques
+	 */
 	public Technique getTechniques() {
 		return techniques;
 	}
