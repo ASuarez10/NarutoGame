@@ -8,15 +8,15 @@ public class Principal {
 	/**
 	 * Clan's list
 	 */
-	private ArrayList<Clan> clans;
+	private Clan clans;
 	
 	//Constructor
 	
 	/**
 	 * Constructor of Principal's class
 	 */
-	public Principal() {
-		clans = new ArrayList<Clan>();
+	public Principal(Clan clans) {
+		this.clans = clans;
 		init();
 	}
 
@@ -24,25 +24,68 @@ public class Principal {
 	 * Method to give the ArrayList clans
 	 * @return Clan's list
 	 */
-	public ArrayList<Clan> getClans() {
+	public Clan getClans() {
 		return clans;
 	}
 
-	public void setClans(ArrayList<Clan> clans) {
+	public void setClans(Clan clans) {
 		this.clans = clans;
 	}
 	
 	//addClan
 	public String addClan(Clan c) {
-		String msj = "El clan ya esta registrado";
-		boolean esta = false;
+		String msj = "";
 		
-		for(int i = 0; i < clans.size() && !esta; i++) {
-			if(c.getName().equals(clans.get(i).getName())) {
-				esta = true;
-			}else {
-				clans.add(c);
-				msj = "El nuevo clan ha sido registrado";
+		Clan e = clans;
+		
+		if(e == null) {
+			clans = c;
+			msj = "El clan ha sido registrado";
+		}else {
+			boolean esta = false;
+			while(!esta && e.getNext() != null) {
+					if(c.getName().equals(e.getName())) {
+						esta = true;
+						msj = "El clan ya esta registrado";
+				}else {
+					e = e.getNext();
+				}
+			}
+			if(esta == false) {
+				c.setNext(e);
+				e.setPrevious(c);
+				clans = c;
+				msj = "El clan ha sido registrado";
+			}
+		}
+		
+		return msj;
+	}
+	
+	//deleteClan
+	public String deleteClan(String nameC) {
+		String msj = "";
+		
+		Clan c = clans;
+		
+		if(clans.getName().equals(nameC)) {
+			clans = clans.getNext();
+			msj = "El clan ha sido borrado";
+		}else {
+			boolean esta = false;
+			while(!esta && c.getNext() != null) {
+				if(c.getNext().getName() == nameC) {
+					esta = true;
+					Clan sg = c.getNext().getNext();
+					c.setNext(sg);
+					sg.setPrevious(c);
+					msj = "El clan ha sido borrado";
+				}else {
+					c = c.getNext();
+				}
+			}
+			if(esta == false) {
+				msj = "El clan no esta registrado";
 			}
 		}
 		
@@ -50,7 +93,6 @@ public class Principal {
 	}
 
 	public void init() {
-		Clan s = new Clan("Uchiha", null);
-		clans.add(s);
+		
 	}
 }//final

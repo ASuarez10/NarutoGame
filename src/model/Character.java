@@ -174,5 +174,60 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		return name.compareToIgnoreCase(o.getName());
 	}
 
+	//addTechnique
+	public String addCharacter(Technique t) {
+		String msj = "";
+		
+		if(techniques == null) {
+			techniques = t;
+		}else {
+			Technique temp = techniques;
+			boolean esta = false;
+			while(!esta && temp.getNext() != null) {
+				if(temp.getName().equals(t.getName())) {
+					esta = true;
+					msj = "El personaje ya esta agregado";
+				}else {
+					temp = temp.getNext();
+				}
+			}
+			if(esta == false) {
+				temp.setNext(techniques);
+				techniques = temp;
+				msj = "El clan ha sido agregado";
+			}
+		}
+		
+		return msj;
+	}
+	
+	//deleteTechnique
+	public String deleteTechnique(String nameT) {
+		String msj = "";
+		
+		Technique t = techniques;
+		
+		if(techniques.getName().equals(nameT)) {
+			techniques = techniques.getNext();
+			msj = "El personaje ha sido borrado";
+		}else {
+			boolean esta = false;
+			while(!esta && t.getNext() != null) {
+				if(t.getNext().getName() == nameT) {
+					esta = true;
+					Technique sg = t.getNext().getNext();
+					t.setNext(sg);
+					msj = "El personaje ha sido borrado";
+				}else {
+					t = t.getNext();
+				}
+			}
+			if(esta == false) {
+				msj = "El personaje no esta registrado";
+			}
+		}
+		
+		return msj;
+	}
 	
 }//final

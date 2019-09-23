@@ -40,9 +40,7 @@ public class Main {
           System.out.println("-----------------------------------------------------------------");
           System.out.println("6. Borrar una tecnica");
           System.out.println("-----------------------------------------------------------------");
-          System.out.println("7. Generar archivo serializado con la informacion de un clan especifico");
-          System.out.println("-----------------------------------------------------------------");
-          System.out.println("8. Generar archivo serializado con la informacion de todos los clanes");
+          System.out.println("7. Generar archivo serializado con la informacion de todos los clanes");
           System.out.println("-----------------------------------------------------------------");
 
           a = Menu.nextInt();
@@ -54,8 +52,8 @@ public class Main {
             	  System.out.println("Ingresa el nombre del clan");
             	  String nC = reader.nextLine();
             	  
-            	  Clan c = new Clan(nC, null);
-            	  System.out.println(principal.addClan(c)); 
+            	  Clan c = new Clan(nC, null, null, null);
+            	  System.out.println(principal.addClan(c));
             	 break;
               case 2:
             	 break;
@@ -63,6 +61,10 @@ public class Main {
               case 3:
             	 break;
               case 4:
+            	  System.out.println("Ingrese el nombre del clan a borrar");
+            	  String nameC = reader.nextLine();
+            	  
+            	  System.out.println(principal.deleteClan(nameC));
             	 break;
               case 5:
             	 break;
@@ -70,11 +72,9 @@ public class Main {
             	 break;
               case 7:
             	 break;
-              case 8:
-            	 break;
 
           }
-        }while(a != 9);
+        }while(a != 8);
 		
 	}
 
