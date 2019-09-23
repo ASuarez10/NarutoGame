@@ -12,10 +12,6 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 	 */
 	private String name;
 	/**
-	 * Character's last name
-	 */
-	private String lastName;
-	/**
 	 * Character's personality
 	 */
 	private String personality;
@@ -56,10 +52,9 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 	 * @param next - next character in the list
 	 * @param techniques - Technique's list
 	 */
-	public Character(String name, String lastName, String personality, String creationDate, long power, Character previous,	
+	public Character(String name, String personality, String creationDate, long power, Character previous,	
 			Character next, Technique techniques) {
 		this.name = name;
-		this.lastName = lastName;
 		this.personality = personality;
 		this.creationDate = creationDate;
 		this.power = power;
@@ -78,18 +73,6 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	/**
-	 * Method to give the attribute lastName
-	 * @return last name
-	 */
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	/**
@@ -175,26 +158,30 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 	}
 
 	//addTechnique
-	public String addCharacter(Technique t) {
+	public String addTechnique(Technique t) {
 		String msj = "";
 		
 		if(techniques == null) {
 			techniques = t;
 		}else {
-			Technique temp = techniques;
-			boolean esta = false;
-			while(!esta && temp.getNext() != null) {
-				if(temp.getName().equals(t.getName())) {
-					esta = true;
-					msj = "El personaje ya esta agregado";
-				}else {
-					temp = temp.getNext();
+			if(techniques.getName().equals(t.getName())) {
+				msj = "El personaje ya esta registrado";
+			}else {
+				Technique temp = techniques;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(t.getName())) {
+						esta = true;
+						msj = "El personaje ya esta agregado";
+					}else {
+						temp = temp.getNext();
+					}
 				}
-			}
-			if(esta == false) {
-				temp.setNext(techniques);
-				techniques = temp;
-				msj = "El clan ha sido agregado";
+				if(esta == false) {
+					temp.setNext(techniques);
+					techniques = temp;
+					msj = "El clan ha sido agregado";
+				}
 			}
 		}
 		
@@ -207,27 +194,39 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		
 		Technique t = techniques;
 		
-		if(techniques.getName().equals(nameT)) {
-			techniques = techniques.getNext();
-			msj = "El personaje ha sido borrado";
+		if(techniques == null) {
+			msj = "El clan no esta registrado";
 		}else {
-			boolean esta = false;
-			while(!esta && t.getNext() != null) {
-				if(t.getNext().getName() == nameT) {
-					esta = true;
-					Technique sg = t.getNext().getNext();
-					t.setNext(sg);
-					msj = "El personaje ha sido borrado";
-				}else {
-					t = t.getNext();
+		
+			if(techniques.getName().equals(nameT)) {
+				techniques = techniques.getNext();
+				msj = "El personaje ha sido borrado";
+			}else {
+				boolean esta = false;
+				while(!esta && t.getNext() != null) {
+					if(t.getNext().getName() == nameT) {
+						esta = true;
+						Technique sg = t.getNext().getNext();
+						t.setNext(sg);
+						msj = "El personaje ha sido borrado";
+					}else {
+						t = t.getNext();
+					}
 				}
-			}
-			if(esta == false) {
-				msj = "El personaje no esta registrado";
+				if(esta == false) {
+					msj = "El personaje no esta registrado";
+				}
 			}
 		}
 		
 		return msj;
 	}
+
+	@Override
+	public String toString() {
+		return "Character [name=" + name + ", personality=" + personality + ", creationDate=" + creationDate
+				+ ", power=" + power + ", previous=" + previous + ", next=" + next + ", techniques=" + techniques + "]";
+	}
+	
 	
 }//final

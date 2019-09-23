@@ -1,5 +1,7 @@
 package ui;
 import model.*;
+import model.Character;
+
 import java.util.Scanner;
 
 public class Main {
@@ -56,9 +58,42 @@ public class Main {
             	  System.out.println(principal.addClan(c));
             	 break;
               case 2:
+            	  System.out.println("Ingresa el nombre del club");
+            	  String nCl = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el nombre del personaje");
+            	  String n1 = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa la personalidad");
+            	  String p1 = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa la fecha de creacion");
+            	  String cd1 = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el poder");
+            	  long pw1 = reader.nextLong();
+            	  
+            	  Character ch = new Character(n1, p1, cd1, pw1, null, null, null);
+            	  
+            	  System.out.println(principal.addCharacter(nCl, ch));
+            	  
             	 break;
-
               case 3:
+            	  System.out.println("Ingresa el nombre del clan");
+            	  String nT = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el nombre del personaje");
+            	  String cN = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el nombre de la tecnica");
+            	  String n2 = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el factor que influye en el poder");
+            	  String f2 = reader.nextLine();
+            	  
+            	  Technique t = new Technique(n2, f2, null);
+            	  
+            	  System.out.println(principal.addTechnique(nT, cN, t));
             	 break;
               case 4:
             	  System.out.println("Ingrese el nombre del clan a borrar");
@@ -67,10 +102,29 @@ public class Main {
             	  System.out.println(principal.deleteClan(nameC));
             	 break;
               case 5:
+            	  System.out.println("Ingresa el nombre del clan donde esta el personaje");
+            	  String nCL = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el nombre del personaje a borrar");
+            	  String nameCh = reader.nextLine();
+            	  
+            	  System.out.println(principal.deleteCharacter(nCL, nameCh));
             	 break;
               case 6:
+            	  System.out.println("Ingresa el nombre del clan");
+            	  String nTD = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el nombre del personaje");
+            	  String cN1 = reader.nextLine();
+            	  
+            	  System.out.println("Ingresa el nombre de la tecnica a borrar");
+            	  String nameT = reader.nextLine();
+            	  
+            	  System.out.println(principal.deleteTechnique(nTD, cN1, nameT));
             	 break;
               case 7:
+            	  principal.serializeClans();
+            	  System.out.println("Archivo serializado creado");
             	 break;
 
           }

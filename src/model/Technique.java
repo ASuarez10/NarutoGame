@@ -79,5 +79,11 @@ public class Technique implements Comparable<Technique>, Comparator<Technique>, 
 	public int compareTo(Technique o) {
 		return name.compareToIgnoreCase(o.getName());
 	}
+
+	@Override
+	public String toString() {
+		return "Technique [name=" + name + ", factor=" + factor + ", next=" + next + "]";
+	}
+	
 	
 }//final

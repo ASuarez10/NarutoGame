@@ -88,23 +88,29 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 		if(characters == null) {
 			characters = ch;
 		}else {
-			Character temp = characters;
-			boolean esta = false;
-			while(!esta && temp.getNext() != null) {
-				if(temp.getName().equals(ch.getName())) {
-					esta = true;
-					msj = "El personaje ya esta agregado";
-				}else {
-					temp = temp.getNext();
+			if(characters.getName().equals(ch.getName())) {
+				msj = "El personaje ya esta registrado";
+			}else {
+				Character temp = characters;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(ch.getName())) {
+						esta = true;
+						msj = "El personaje ya esta agregado";
+					}else {
+						temp = temp.getNext();
+					}
 				}
-			}
-			if(esta == false) {
-				temp.setNext(characters);
-				characters.setPrevious(temp);
-				characters = temp;
-				msj = "El clan ha sido agregado";
-			}
+				
+				if(esta == false) {
+					temp.setNext(characters);
+					characters.setPrevious(temp);
+					characters = temp;
+					msj = "El personaje ha sido agregado";
+				}
+			}		
 		}
+			
 		
 		return msj;
 	}
@@ -115,27 +121,96 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 		
 		Character ch = characters;
 		
-		if(characters.getName().equals(nameCh)) {
-			characters = characters.getNext();
-			msj = "El personaje ha sido borrado";
+		if(characters == null) {
+			msj = "El clan no esta registrado";
 		}else {
-			boolean esta = false;
-			while(!esta && ch.getNext() != null) {
-				if(ch.getNext().getName() == nameCh) {
-					esta = true;
-					Character sg = ch.getNext().getNext();
-					ch.setNext(sg);
-					sg.setPrevious(ch);
-					msj = "El personaje ha sido borrado";
-				}else {
-					ch = ch.getNext();
+		
+			if(characters.getName().equals(nameCh)) {
+				characters = characters.getNext();
+				msj = "El personaje ha sido borrado";
+			}else {
+				boolean esta = false;
+				while(!esta && ch.getNext() != null) {
+					if(ch.getNext().getName() == nameCh) {
+						esta = true;
+						Character sg = ch.getNext().getNext();
+						ch.setNext(sg);
+						sg.setPrevious(ch);
+						msj = "El personaje ha sido borrado";
+					}else {
+						ch = ch.getNext();
+					}
 				}
-			}
-			if(esta == false) {
-				msj = "El personaje no esta registrado";
+				if(esta == false) {
+					msj = "El personaje no esta registrado";
+				}
 			}
 		}
 		
 		return msj;
 	}
+	
+	//addTechnique
+	public String addTechnique(String cN, Technique t) {
+		String msj = "";
+		
+		if(characters == null) {
+			msj = "El personaje no esta registrado";
+		}else {
+			if(characters.getName().equals(cN)) {
+				msj = characters.addTechnique(t);
+			}else {
+				boolean esta = false;
+				Character temp = characters;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(cN)) {
+						esta = true;
+						msj = temp.addTechnique(t);
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				if(esta == false) {
+					msj = "El personaje no esta registrado";
+				}
+			}
+		}
+		
+		return msj;
+	}
+	
+	//deleteTechnique
+	public String deleteTechnique(String cN1, String nameT) {
+		String msj = "";
+		
+		if(characters == null) {
+			msj = "El personaje no esta gregado";
+		}else {
+			if(characters.getName().equals(cN1)) {
+				msj = characters.deleteTechnique(nameT);
+			}else {
+				boolean esta = false;
+				Character temp = characters;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(cN1)) {
+						esta = true;
+						msj = temp.deleteTechnique(nameT);
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				if(esta == false) {
+					msj = "El personaje no esta registrado";
+				}
+			}
+		}
+		
+		return msj;
+	}
+
+	@Override
+	public String toString() {
+		return "Clan [name=" + name + ", characters=" + characters + ", next=" + next + ", previous=" + previous + "]";
+	}
+	
 }//final
