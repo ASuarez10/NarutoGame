@@ -4,6 +4,8 @@ import model.Character;
 
 import java.util.Scanner;
 
+import exceptions.InvalidInputException;
+
 public class Main {
 
 	private Scanner reader;
@@ -43,6 +45,8 @@ public class Main {
           System.out.println("6. Borrar una tecnica");
           System.out.println("-----------------------------------------------------------------");
           System.out.println("7. Generar archivo serializado con la informacion de todos los clanes");
+          System.out.println("-----------------------------------------------------------------");
+          System.out.println("8. Buscar");
           System.out.println("-----------------------------------------------------------------");
 
           a = Menu.nextInt();
@@ -126,15 +130,61 @@ public class Main {
             	  principal.serializeClans();
             	  System.out.println("Archivo serializado creado");
             	 break;
-
+              case 8:
+            	  System.out.println("Ingresa: \n "
+            	  		+ "1. Para buscar un clan \n"
+            	  		+ "2. Para buscar un personaje \n"
+            	  		+ "3. Para buscar una tecnica");
+            	  int selection = reader.nextInt();
+            	  
+            	  try {
+            		  if(selection < 1 || selection > 2) {
+            			throw new InvalidInputException("El valor ingresado es incorrecto");  
+            		  }
+            	  }catch(Exception e) {
+            		  System.out.println(e.getMessage());
+            	  }
+            	  
+            	  if(selection == 1) {
+            		  System.out.println("Ingresa el nombre del clan");
+            		  String snC = reader.nextLine();
+            		  
+            		  System.out.println(principal.searchClan(snC));
+            	  }else if(selection == 2) {
+            		  System.out.println("Ingresa el nombre del clan");
+            		  String snC1 = reader.nextLine();
+            		  
+            		  System.out.println("Ingresa el nombre del personaje");
+            		  String snCh = reader.nextLine();
+            		  
+            		  System.out.println(principal.searchCharacter(snC1, snCh));
+            	  }else if(selection == 3) {
+            		  System.out.println("Ingresa el nombre del clan");
+            		  String snC2 = reader.nextLine();
+            		  
+            		  System.out.println("Ingresa el nombre del personaje");
+            		  String snCh1 = reader.nextLine();
+            		  
+            		  System.out.println("Ingresa el nombre de la tecnica");
+            		  String snt = reader.nextLine();
+            		  
+            		  System.out.println(principal.searchTechnique(snC2, snCh1, snt));
+            	  }
+            	 break;
+            	 
           }
-        }while(a != 8);
+        }while(a != 9);
 		
 	}
 
 	private void init() {
-		// TODO Auto-generated method stub
+	
+		Technique a2 = new Technique("Rasengan", "Viento", null); 
+		Technique a1 = new Technique("Chidori", "Rayo", a2);	
+		Character ch1 = new Character("Naruto", "Hiperactivo", "10 de mayo de 2001", 1000, null, null, a1);
+		Clan c1 = new Clan("Uzumaki", ch1, null, null);
 		
+		principal = new Principal(c1);
 	}
 
 }//final

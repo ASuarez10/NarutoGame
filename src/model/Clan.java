@@ -213,4 +213,62 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 		return "Clan [name=" + name + ", characters=" + characters + ", next=" + next + ", previous=" + previous + "]";
 	}
 	
+	//searchCharacter
+	public String searchCharacter(String snCh) {
+		String msj = "";
+		
+		if(characters == null) {
+			msj= "El personaje no esta agregado";
+		}else {
+			if(characters.getName().equals(snCh)) {
+				msj = "El personaje ya esta registrado";
+			}else {
+				Character temp = characters;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(snCh)) {
+						esta = true;
+						msj = "El personaje ya esta agregado";
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				
+				if(esta == false) {
+					msj = "El personaje no esta agregado";
+				}
+			}		
+		}	
+		return msj;
+	}
+	
+	//searchTechnique
+	public String searchTechnique(String snCh1, String snt) {
+		String msj = "";
+		
+		if(characters == null) {
+			msj= "El personaje no esta agregado";
+		}else {
+			if(characters.getName().equals(snCh1)) {
+				msj = characters.searchTechnique(snt);
+			}else {
+				Character temp = characters;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(snCh1)) {
+						esta = true;
+						msj = temp.searchTechnique(snt);
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				
+				if(esta == false) {
+					msj = "El personaje no esta agregado";
+				}
+			}		
+		}	
+		return msj;
+	}
+	
 }//final

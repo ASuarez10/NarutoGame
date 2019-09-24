@@ -228,5 +228,31 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 				+ ", power=" + power + ", previous=" + previous + ", next=" + next + ", techniques=" + techniques + "]";
 	}
 	
-	
+	public String searchTechnique(String snt) {
+		String msj = "";
+		
+		if(techniques == null) {
+			msj = "La tecnica no esta registrada";
+		}else {
+			if(techniques.getName().equals(snt)) {
+				msj = "La tecnica no esta registrada";
+			}else {
+				Technique temp = techniques;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(snt)) {
+						esta = true;
+						msj = "El tecnica ya esta agregado";
+					}else {
+						temp = temp.getNext();
+					}
+				}
+			
+				if(esta == false) {
+					msj = "La tecnica no esta agregada";
+				}
+			}
+		}	
+		return msj;
+	}
 }//final

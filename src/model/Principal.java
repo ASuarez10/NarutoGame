@@ -26,7 +26,6 @@ public class Principal {
 	 */
 	public Principal(Clan clans) {
 		this.clans = clans;
-		init();
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class Principal {
 			msj = "El clan ha sido registrado";
 		}else {
 			if(clans.getName().equals(c.getName())) {
-				msj = "El personaje ya esta registrado";
+				msj = "El clan ya esta registrado";
 			}else {
 				boolean esta = false;
 				while(!esta && e.getNext() != null) {
@@ -250,7 +249,100 @@ public class Principal {
 			System.out.println(ae.getMessage());
 		}
 	}
-	public void init() {
+	
+	//searchClan
+	public String searchClan(String snC) {
+		long time1 = System.nanoTime();
+		String msj = "";
 		
+		if(clans == null) {
+			msj= "El clan no esta agregado";
+		}else {
+			if(clans.getName().equals(snC)) {
+				msj = "El clan ya esta registrado";
+			}else {
+				Clan temp = clans;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(snC)) {
+						esta = true;
+						msj = "El clan ya esta agregado";
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				
+				if(esta == false) {
+					msj = "El clan no esta agregado";
+				}
+			}		
+		}	
+		long time2 = System.nanoTime();
+		long total = time2 - time1;
+		return msj + ". Tiempo de busqueda: " + total;
+	}
+	
+	//searchCharacter
+	public String searchCharacter(String snC1, String snCh) {
+		long time1 = System.nanoTime();
+		String msj = "";
+		
+		if(clans == null) {
+			msj= "El clan no esta agregado";
+		}else {
+			if(clans.getName().equals(snC1)) {
+				msj = clans.searchCharacter(snCh);
+			}else {
+				Clan temp = clans;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(snC1)) {
+						esta = true;
+						msj = temp.searchCharacter(snCh);
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				
+				if(esta == false) {
+					msj = "El clan no esta agregado";
+				}
+			}		
+		}	
+		long time2 = System.nanoTime();
+		long total = time2 - time1;
+		return msj + ". Tiempo de busqueda: " + total;
+	}
+	
+	//searchTeachnique
+	public String searchTechnique(String snC2, String snCh1, String snt) {
+		long time1 = System.nanoTime();
+		String msj = "";
+		
+		if(clans == null) {
+			msj= "El clan no esta agregado";
+		}else {
+			if(clans.getName().equals(snC2)) {
+				msj = clans.searchTechnique(snCh1, snt);
+			}else {
+				Clan temp = clans;
+				boolean esta = false;
+				while(!esta && temp.getNext() != null) {
+					if(temp.getName().equals(snC2)) {
+						esta = true;
+						msj = temp.searchTechnique(snCh1, snt);
+					}else {
+						temp = temp.getNext();
+					}
+				}
+				
+				if(esta == false) {
+					msj = "El clan no esta agregado";
+				}
+			}		
+		}	
+		long time2 = System.nanoTime();
+		long total = time2 - time1;
+		return msj + ". Tiempo de busqueda: " + total;
 	}
 }//final
