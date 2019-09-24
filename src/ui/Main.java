@@ -48,6 +48,8 @@ public class Main {
           System.out.println("-----------------------------------------------------------------");
           System.out.println("8. Buscar");
           System.out.println("-----------------------------------------------------------------");
+          System.out.println("9. Salir");
+          System.out.println("-----------------------------------------------------------------");
 
           a = Menu.nextInt();
 
@@ -138,7 +140,7 @@ public class Main {
             	  int selection = reader.nextInt();
             	  
             	  try {
-            		  if(selection < 1 || selection > 2) {
+            		  if(selection < 1 || selection > 3) {
             			throw new InvalidInputException("El valor ingresado es incorrecto");  
             		  }
             	  }catch(Exception e) {
@@ -147,11 +149,13 @@ public class Main {
             	  
             	  if(selection == 1) {
             		  System.out.println("Ingresa el nombre del clan");
+            		  reader.nextLine();
             		  String snC = reader.nextLine();
             		  
             		  System.out.println(principal.searchClan(snC));
             	  }else if(selection == 2) {
             		  System.out.println("Ingresa el nombre del clan");
+            		  reader.nextLine();
             		  String snC1 = reader.nextLine();
             		  
             		  System.out.println("Ingresa el nombre del personaje");
@@ -160,6 +164,7 @@ public class Main {
             		  System.out.println(principal.searchCharacter(snC1, snCh));
             	  }else if(selection == 3) {
             		  System.out.println("Ingresa el nombre del clan");
+            		  reader.nextLine();
             		  String snC2 = reader.nextLine();
             		  
             		  System.out.println("Ingresa el nombre del personaje");

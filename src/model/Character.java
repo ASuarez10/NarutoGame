@@ -169,7 +169,7 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 			}else {
 				Technique temp = techniques;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(t.getName())) {
 						esta = true;
 						msj = "El personaje ya esta agregado";
@@ -203,7 +203,7 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 				msj = "El personaje ha sido borrado";
 			}else {
 				boolean esta = false;
-				while(!esta && t.getNext() != null) {
+				while(!esta && t != null) {
 					if(t.getNext().getName() == nameT) {
 						esta = true;
 						Technique sg = t.getNext().getNext();
@@ -233,26 +233,25 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 		
 		if(techniques == null) {
 			msj = "La tecnica no esta registrada";
+		}else if(techniques.getName().equals(snt)){
+				msj = "La tecnica ya esta registrada";
 		}else {
-			if(techniques.getName().equals(snt)) {
-				msj = "La tecnica no esta registrada";
-			}else {
-				Technique temp = techniques;
-				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
-					if(temp.getName().equals(snt)) {
-						esta = true;
-						msj = "El tecnica ya esta agregado";
-					}else {
-						temp = temp.getNext();
-					}
-				}
-			
-				if(esta == false) {
-					msj = "La tecnica no esta agregada";
+			Technique temp = techniques;
+			boolean esta = false;
+			while(!esta && temp != null) {
+				if(temp.getName().equals(snt)) {
+					esta = true;
+					msj = "El tecnica ya esta agregado";
+				}else {
+					temp = temp.getNext();
 				}
 			}
-		}	
+		
+			if(esta == false) {
+				msj = "La tecnica no esta agregada";
+			}
+		}
+			
 		return msj;
 	}
 }//final

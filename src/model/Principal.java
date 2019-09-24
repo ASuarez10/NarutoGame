@@ -54,7 +54,7 @@ public class Principal {
 				msj = "El clan ya esta registrado";
 			}else {
 				boolean esta = false;
-				while(!esta && e.getNext() != null) {
+				while(!esta && e != null) {
 						if(c.getName().equals(e.getName())) {
 							esta = true;
 							msj = "El clan ya esta registrado";
@@ -88,7 +88,7 @@ public class Principal {
 				msj = "El clan ha sido borrado";
 			}else {
 				boolean esta = false;
-				while(!esta && c.getNext() != null) {
+				while(!esta && c != null) {
 					if(c.getNext().getName() == nameC) {
 						esta = true;
 						Clan sg = c.getNext().getNext();
@@ -119,7 +119,7 @@ public class Principal {
 			}else {
 				boolean esta = false;
 				Clan temp = clans;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(nCl)) {
 						esta = true;
 						msj = temp.addCharacter(ch);
@@ -149,7 +149,7 @@ public class Principal {
 			}else {
 				boolean esta = false;
 				Clan temp = clans;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(nCL)) {
 						esta = true;
 						msj = temp.deleteCharacter(nameCh);
@@ -178,7 +178,7 @@ public class Principal {
 			}else {
 				boolean esta = false;
 				Clan temp = clans;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(nT)) {
 						esta = true;
 						msj = temp.addTechnique(cN, t);
@@ -207,7 +207,7 @@ public class Principal {
 			}else {
 				boolean esta = false;
 				Clan temp = clans;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(nTD)) {
 						esta = true;
 						msj = temp.deleteTechnique(cN1, nameT);
@@ -263,7 +263,7 @@ public class Principal {
 			}else {
 				Clan temp = clans;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(snC)) {
 						esta = true;
 						msj = "El clan ya esta agregado";
@@ -295,7 +295,7 @@ public class Principal {
 			}else {
 				Clan temp = clans;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(snC1)) {
 						esta = true;
 						msj = temp.searchCharacter(snCh);
@@ -327,7 +327,7 @@ public class Principal {
 			}else {
 				Clan temp = clans;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(snC2)) {
 						esta = true;
 						msj = temp.searchTechnique(snCh1, snt);

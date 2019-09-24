@@ -93,7 +93,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 			}else {
 				Character temp = characters;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(ch.getName())) {
 						esta = true;
 						msj = "El personaje ya esta agregado";
@@ -130,7 +130,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 				msj = "El personaje ha sido borrado";
 			}else {
 				boolean esta = false;
-				while(!esta && ch.getNext() != null) {
+				while(!esta && ch != null) {
 					if(ch.getNext().getName() == nameCh) {
 						esta = true;
 						Character sg = ch.getNext().getNext();
@@ -162,7 +162,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 			}else {
 				boolean esta = false;
 				Character temp = characters;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(cN)) {
 						esta = true;
 						msj = temp.addTechnique(t);
@@ -191,7 +191,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 			}else {
 				boolean esta = false;
 				Character temp = characters;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(cN1)) {
 						esta = true;
 						msj = temp.deleteTechnique(nameT);
@@ -225,7 +225,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 			}else {
 				Character temp = characters;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(snCh)) {
 						esta = true;
 						msj = "El personaje ya esta agregado";
@@ -254,7 +254,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 			}else {
 				Character temp = characters;
 				boolean esta = false;
-				while(!esta && temp.getNext() != null) {
+				while(!esta && temp != null) {
 					if(temp.getName().equals(snCh1)) {
 						esta = true;
 						msj = temp.searchTechnique(snt);
