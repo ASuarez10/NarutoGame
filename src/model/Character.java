@@ -165,29 +165,46 @@ public class Character implements Comparable<Character>, Comparator<Character>, 
 			techniques = t;
 		}else {
 			if(techniques.getName().equals(t.getName())) {
-				msj = "El personaje ya esta registrado";
+				msj = "La tecnica ya estaba registrada";
 			}else {
 				Technique temp = techniques;
 				boolean esta = false;
 				while(!esta && temp != null) {
 					if(temp.getName().equals(t.getName())) {
 						esta = true;
-						msj = "El personaje ya esta agregado";
+						msj = "La tecnica ya estaba agregada";
 					}else {
 						temp = temp.getNext();
 					}
 				}
 				if(esta == false) {
-					temp.setNext(techniques);
-					techniques = temp;
-					msj = "El clan ha sido agregado";
+					if(t.compareTo(techniques) < 0) {
+						Technique temp2 = techniques;
+						techniques = t;
+						techniques.setNext(temp2);
+						msj = "La tecnica ha sido agregada";
+					}else {
+						Technique temp2 = techniques;
+						boolean ya = false;
+						while(!ya && temp2.getNext() != null) {
+							if(t.compareTo(temp2.getNext()) < 0) {
+								t.setNext(temp2.getNext());;
+								temp2.setNext(t);
+								msj = "La tecnica ha sido agregada";
+							}else {
+								temp2 = temp2.getNext();
+							}
+						}
+					}
 				}
 			}
 		}
 		
 		return msj;
 	}
-	
+//	temp.setNext(techniques);
+//	techniques = temp;
+//	msj = "El clan ha sido agregado";
 	//deleteTechnique
 	public String deleteTechnique(String nameT) {
 		String msj = "";

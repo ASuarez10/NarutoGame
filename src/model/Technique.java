@@ -72,12 +72,12 @@ public class Technique implements Comparable<Technique>, Comparator<Technique>, 
 
 	@Override
 	public int compare(Technique o1, Technique o2) {
-		return o1.getName().compareToIgnoreCase(o2.getName());
+		return o1.getFactor().compareToIgnoreCase(o2.getFactor());
 	}
 
 	@Override
 	public int compareTo(Technique o) {
-		return name.compareToIgnoreCase(o.getName());
+		return factor.compareToIgnoreCase(o.getFactor());
 	}
 
 	@Override

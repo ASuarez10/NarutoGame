@@ -26,6 +26,7 @@ public class Principal {
 	 */
 	public Principal(Clan clans) {
 		this.clans = clans;
+		organizeClans();
 	}
 
 	/**
@@ -135,6 +136,47 @@ public class Principal {
 		
 		return msj;
 	}
+	
+	//organizeClans
+		public void organizeClans() {
+			boolean ord;
+			if(clans != null) {
+				do {
+					ord = false;
+					Clan temp = clans;
+					Clan tempN = clans.getNext();
+					Clan temp2 = null;
+					
+				
+					while(tempN != null) {
+						if(temp.compareTo(tempN) > 0) {
+							ord = true;
+							if(temp2 != null) {
+								Clan next2 = tempN.getNext();
+								temp2.setNext(tempN);
+								tempN.setPrevious(temp2);
+								tempN.setNext(temp);
+								temp.setPrevious(tempN);
+								temp.setNext(next2);
+							}else {
+								Clan tempN2 = tempN.getNext();
+								clans = tempN;
+								tempN.setNext(temp);
+								temp.setPrevious(tempN);
+								temp.setNext(tempN2);
+								tempN2.setPrevious(temp);
+							}
+							temp2= tempN;
+							tempN = temp.getNext().getNext();
+						}else {
+							temp2 = temp;
+							temp = tempN;
+							tempN = tempN.getNext();
+						}
+					}
+				}while(ord);
+			}
+		}
 	
 	//deleteCharacter
 	

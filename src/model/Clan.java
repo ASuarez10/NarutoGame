@@ -29,6 +29,7 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 		this.characters = characters;
 		this.next = next;
 		this.previous = previous;
+		organizeCharacters();
 	}
 
 	/**
@@ -148,6 +149,47 @@ public class Clan implements Comparable<Clan>, Comparator<Clan>, Serializable{
 		}
 		
 		return msj;
+	}
+	
+	//organizeCharacters
+	public void organizeCharacters() {		
+		if(characters != null) {
+			boolean ord;
+			do {
+				ord = false;
+				Character temp = characters;
+				Character tempN = characters.getNext();
+				Character temp2 = null;
+				
+			
+				while(tempN != null) {
+					if(temp.compare(temp, tempN) > 0) {
+						ord = true;
+						if(temp2 != null) {
+							Character next2 = tempN.getNext();
+							temp2.setNext(tempN);
+							tempN.setPrevious(temp2);
+							tempN.setNext(temp);
+							temp.setPrevious(tempN);
+							temp.setNext(next2);
+						}else {
+							Character tempN2 = tempN.getNext();
+							characters = tempN;
+							tempN.setNext(temp);
+							temp.setPrevious(tempN);
+							temp.setNext(tempN2);
+							tempN2.setPrevious(temp);
+						}
+						temp2= tempN;
+						tempN = temp.getNext().getNext();
+					}else {
+						temp2 = temp;
+						temp = tempN;
+						tempN = tempN.getNext();
+					}
+				}
+			}while(ord);
+		}
 	}
 	
 	//addTechnique
